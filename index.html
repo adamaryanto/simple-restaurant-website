@@ -1,190 +1,472 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BurgerKill</title>
-    <!-- Style -->
-    <link rel="stylesheet" href="style-home-page.css">
+    <title>BurgerKill - Premium Burgers</title>
 
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-    <!-- Icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+    <script src="https://cdn.tailwindcss.com"></script>
 
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#f39c12',
+                        'primary-hover': '#d35400',
+                        bg: '#0f0f0f',
+                        'bg-card': '#1a1a1a',
+                    },
+                    fontFamily: {
+                        poppins: ['Poppins', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'hero-pattern': "url('Hiro Section.png')", /* Pastikan gambar ini ada */
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .nav-link::after {
+                content: '';
+                display: block;
+                padding-bottom: 0.3rem;
+                border-bottom: 2px solid #f39c12;
+                transform: scaleX(0);
+                transition: 0.3s;
+            }
+            .nav-link:hover::after {
+                transform: scaleX(0.7);
+            }
+            
+            /* Logic Mobile Menu */
+            .navbar-nav.active {
+                right: 0;
+            }
+
+            /* Logic Search Form (Animation) */
+            .search-form {
+                transform-origin: top;
+                transition: transform 0.3s ease-in-out;
+            }
+            .search-form.active {
+                transform: scaleY(1);
+            }
+
+            /* Logic Shopping Cart */
+            .shopping-cart {
+                position: absolute;
+                top: 100%;
+                right: -100%;
+                height: 100vh;
+                width: 22rem; 
+                padding: 1.5rem;
+                background-color: #1a1a1a;
+                border-left: 1px solid rgba(255,255,255,0.1);
+                transition: 0.4s;
+            }
+
+            .shopping-cart.active {
+                right: 0;
+            }
+            
+            .shopping-cart::-webkit-scrollbar {
+                width: 5px;
+            }
+            .shopping-cart::-webkit-scrollbar-thumb {
+                background-color: #f39c12;
+                border-radius: 10px;
+            }
+        }
+    </style>
 </head>
-<body>
-    <!-- Navbar Start -->
-     <nav class="navbar">
-        <a href="#" class="logo">BURGER<span>KILL</span></a>
-        <div class="navbar-nav">
-            <a href="#">Home</a>
-            <a href="#product">Product</a>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
-        </div>
-        <div class="navbar-extra">
-            <a href="#" id="bell"><i class="fa-solid fa-bell"></i></a>
-            <a href="#" id="search"><i class="fa-solid fa-magnifying-glass"></i></a>
-            <a href="#" id="menu"><i class="fa-solid fa-bars"></i></a>
-        </div>
-     </nav>
-    <!-- Navbar End -->
 
-    <!-- Hiro Section Start -->
-    <div class="hiro-wrapper">
-        <div class="hiro-title">
-            <h1>The Killer Package</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est blanditiis provident vel unde magni placeat magnam, optio delectus nostrum nisi!</p>
-            <a href="#" class="btn-cta">Beli Sekarang</a>
-        </div>
-    </div>
-    <!-- Hiro Section End -->
+<body class="bg-bg text-white font-poppins overflow-x-hidden selection:bg-primary selection:text-bg">
 
-    <!-- Menu burger Start -->
-     <div class=wrapper-menu>
-        <h1 id="product"><span>Menu</span> Kami</h1>
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ullam ab nesciunt provident sequi totam blanditiis!</p>
-        <div class="pWrapper">
-            <div class="card-menu">
-                <img src="menu image.png" height="230px" class="img-menu"> 
-                <div class="title-menu">
-                    <h1>Cheese Burger</h1>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem vero sit tempore voluptates incidunt asperiores corrupti ab in itaque nam?</p>
-                    <a href="#" id="cart"><i class="fa-solid fa-cart-shopping"></i></a>
-                </div>   
-            </div>
-            <div class="card-menu">
-                <img src="menu image.png" height="230px" class="img-menu"> 
-                <div class="title-menu">
-                    <h1>Cheese Burger</h1>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem vero sit tempore voluptates incidunt asperiores corrupti ab in itaque nam?</p>
-                    <a href="#" id="cart"><i class="fa-solid fa-cart-shopping"></i></a>
-                </div>   
-            </div>
-            <div class="card-menu">
-                <img src="menu image.png" height="230px" class="img-menu"> 
-                <div class="title-menu">
-                    <h1>Cheese Burger</h1>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem vero sit tempore voluptates incidunt asperiores corrupti ab in itaque nam?</p>
-                    <a href="#" id="cart"><i class="fa-solid fa-cart-shopping"></i></a>
-                </div>                  
-            </div>
-            <div class="card-menu">
-                <img src="menu image.png" height="230px" class="img-menu"> 
-                <div class="title-menu">
-                    <h1>Cheese Burger</h1>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem vero sit tempore voluptates incidunt asperiores corrupti ab in itaque nam?</p>
-                    <a href="#" id="cart"><i class="fa-solid fa-cart-shopping"></i></a>
-                </div>   
-                
-            </div>
-            <div class="card-menu">
-                <img src="menu image.png" height="230px" class="img-menu"> 
-                <div class="title-menu">
-                    <h1>Cheese Burger</h1>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem vero sit tempore voluptates incidunt asperiores corrupti ab in itaque nam?</p>
-                    <a href="#" id="cart"><i class="fa-solid fa-cart-shopping"></i></a>
-                </div>   
-                
-            </div>
-            <div class="card-menu">
-                <img src="menu image.png" height="230px" class="img-menu"> 
-                <div class="title-menu">
-                    <h1>Cheese Burger</h1>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem vero sit tempore voluptates incidunt asperiores corrupti ab in itaque nam?</p>
-                    <a href="#" id="cart"><i class="fa-solid fa-cart-shopping"></i></a>
-                </div>   
-                
-            </div>
-         </div>
+    <nav class="navbar fixed top-0 left-0 right-0 z-50 bg-[#0f0f0f]/90 backdrop-blur-md border-b border-white/10 py-5 px-[7%] flex justify-between items-center">
+        <a href="#" class="text-2xl font-extrabold italic text-white">BURGER<span class="text-primary">KILL</span></a>
+
+        <div class="navbar-nav hidden md:flex items-center">
+            <a href="#home" class="nav-link text-white mx-4 text-base font-medium hover:text-primary transition duration-300">Home</a>
+            <a href="#menu" class="nav-link text-white mx-4 text-base font-medium hover:text-primary transition duration-300">Menu</a>
+            <a href="#about" class="nav-link text-white mx-4 text-base font-medium hover:text-primary transition duration-300">About</a>
+            <a href="#contact" class="nav-link text-white mx-4 text-base font-medium hover:text-primary transition duration-300">Contact</a>
         </div>
 
-    <!-- Menu burger End -->
-
-    <!-- About Me Start -->
-    <div class="aboutContainer" id="about">
-        <div class="title-about">
-            <h1>Mengapa Memilih Kami</h1>
-
+        <div class="navbar-nav absolute top-full -right-full w-[70%] h-screen bg-[#0f0f0f]/95 backdrop-blur-lg border-l border-white/10 flex flex-col pt-20 transition-all duration-300 md:hidden shadow-[-5px_0_15px_rgba(0,0,0,0.5)]">
+            <a href="#home" class="block m-6 text-xl text-white hover:text-primary hover:pl-2 transition-all">Home</a>
+            <a href="#menu" class="block m-6 text-xl text-white hover:text-primary hover:pl-2 transition-all">Menu</a>
+            <a href="#about" class="block m-6 text-xl text-white hover:text-primary hover:pl-2 transition-all">About</a>
+            <a href="#contact" class="block m-6 text-xl text-white hover:text-primary hover:pl-2 transition-all">Contact</a>
         </div>
-        <div class="about-wrapper">
-            <div class="about-content">
-                <a><i class="fa-solid fa-bowl-rice"></i></a>
-                <h1>Serve Healthy Food</h1>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Impedit, beatae.</p>
+
+        <div class="navbar-extra flex items-center gap-4">
+            <a href="#" id="search" class="text-white hover:text-primary text-xl transition duration-300"><i class="fa-solid fa-magnifying-glass"></i></a>
+            <a href="#" id="cart-nav" class="text-white hover:text-primary text-xl transition duration-300 relative">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span class="quantity-badge hidden absolute -top-2 -right-2 bg-red-600 text-white text-[0.65rem] font-bold rounded-full w-4 h-4 flex items-center justify-center">0</span>
+            </a>
+            <a href="#" id="hamburger-menu" class="text-white hover:text-primary text-2xl transition duration-300 md:hidden"><i class="fa-solid fa-bars"></i></a>
+        </div>
+
+        <div class="search-form absolute top-full right-[7%] bg-white w-[85%] md:w-[30rem] h-12 flex items-center transform scale-y-0 origin-top shadow-lg rounded-b-lg">
+            <input type="search" id="search-box" placeholder="Search menu..." class="w-full h-full text-black p-4 text-base outline-none rounded-bl-lg">
+            <label for="search-box" class="fas fa-search cursor-pointer text-black mr-4 text-xl"></label>
+        </div>
+
+        <div class="shopping-cart overflow-y-auto shadow-2xl z-50">
+            <div class="flex justify-between items-center mb-6 border-b border-white/10 pb-3">
+                <h3 class="text-xl font-bold text-white">Shopping Cart</h3>
+                <i class="fa-solid fa-xmark cursor-pointer text-xl hover:text-primary transition" id="cart-close"></i>
             </div>
-         
-         
-            <div class="about-content">
-                <a><i class="fa-solid fa-truck"></i></i></a>
-                <h1>Get Free Delivery</h1>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Impedit, beatae.</p>
+            
+            <div class="cart-items flex flex-col gap-4">
+                <p class="text-gray-500 text-center mt-10 empty-cart-msg text-sm">Your cart is empty.</p>
             </div>
-         
-         
-            <div class="about-content">
-                <a><i class="fa-regular fa-credit-card"></i></i></a>
-                <h1>Simple Payment</h1>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Impedit, beatae.</p>
+
+            <div class="mt-6 pt-4 border-t border-white/10">
+                <h4 class="text-lg font-bold text-center mb-4">Total: <span id="cart-total" class="text-primary">Rp 0</span></h4>
+                <button class="w-full bg-primary py-3 text-bg font-bold rounded-lg hover:bg-white transition duration-300 shadow-lg">Checkout Now</button>
             </div>
         </div>
-     </div>
+    </nav>
+    <header class="hiro-wrapper min-h-screen bg-hero-pattern bg-no-repeat bg-cover bg-center flex items-center relative" id="home">
+        <div class="absolute inset-0 bg-gradient-to-r from-black/90 via-black/50 to-transparent"></div>
+        <main class="hiro-content relative z-10 px-[7%] max-w-4xl">
+            <h1 class="text-5xl md:text-6xl font-extrabold leading-tight mb-4 drop-shadow-lg">The Killer Taste</h1>
+            <p class="text-lg font-light text-gray-300 mb-8 max-w-lg leading-relaxed">Experience the ultimate burger sensation. Juicy, savory, and unforgettable.</p>
+            <a href="#menu" class="btn-cta inline-block py-3 px-8 bg-primary text-bg font-bold rounded-full text-lg shadow-[0_4px_15px_rgba(243,156,18,0.4)] transition-all duration-300 hover:bg-primary-hover hover:-translate-y-1 hover:shadow-[0_8px_25px_rgba(243,156,18,0.6)]">Order Now</a>
+        </main>
+    </header>
 
-    <!-- About Me End -->
-     
-    <!-- Contact Start -->
-     <div class="contact" id="contact">
-        <h2><span>Kontak</span> Kami</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur illum nobis blanditiis delectus aperiam modi odio mollitia illo. Laborum, rem?</p>
-        <div class="wrap-contact">
-            <div class="contact-map">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126881.56976860296!2d106.73539423314695!3d-6.38767139051209!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69e95620a297d3%3A0x1cfd4042316fb217!2sKota%20Depok%2C%20Jawa%20Barat!5e0!3m2!1sid!2sid!4v1721041875908!5m2!1sid!2sid"" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="map"></iframe>
-                <div class="form">
-                    <div class="input-grup1">
-                        <a id="user-name"><i class="fa-solid fa-user"></i></a>
-                        <input type="text" placeholder="Nama" id="box-nama"> 
-                    </div>
-                    <div class="input-grup2">
-                        <a id="mail"><i class="fa-solid fa-envelope"></i></a>
-                        <input type="mail" placeholder="Email" id="box-mail">
-                    </div>
-                    <div class="input-grup3">
-                        <a id="phone"<i class="fa-solid fa-phone"></i></a>
-                        <input type="number" placeholder="No Hp" id="box-number"> 
-                    </div>
-                    <a href="#" id="btn-sendMessage">Kirim Pesan</a>
+    <section class="menu-section py-24 px-[7%] bg-[#111] scroll-mt-20" id="menu">
+        <h2 class="text-center text-4xl font-extrabold uppercase mb-4">Our <span class="text-primary">Premium</span> Menu</h2>
+        <p class="text-center max-w-2xl mx-auto mb-12 font-light text-gray-400">Expertly crafted burgers made with the finest ingredients.</p>
+
+        <div class="menu-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            <div class="menu-card bg-bg-card rounded-xl overflow-hidden border border-white/5 shadow-lg flex flex-col group hover:-translate-y-2 hover:border-primary hover:shadow-[0_10px_30px_rgba(243,156,18,0.2)] transition-all duration-500">
+                <div class="menu-img-container h-60 overflow-hidden bg-black">
+                    <img src="burger_classic.png" alt="Classic Beef Burger" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                 </div>
+                <div class="menu-content p-6 flex flex-col flex-grow">
+                    <h3 class="text-2xl font-semibold mb-2 text-white">Classic Beef Burger</h3>
+                    <p class="text-sm text-gray-400 mb-6 flex-grow leading-relaxed">100% juicy beef patty with fresh lettuce, tomato, and secret sauce.</p>
+                    <div class="menu-footer flex justify-between items-center mt-auto">
+                        <span class="price text-xl font-bold text-primary">Rp 45.000</span>
+                        <a href="#" class="btn-add w-10 h-10 bg-primary text-bg rounded-full flex justify-center items-center hover:bg-white hover:rotate-90 transition duration-300" data-id="1" data-name="Classic Beef Burger" data-price="45000" data-img="burger_classic.png"><i class="fa-solid fa-plus pointer-events-none"></i></a>
+                    </div>
                 </div>
             </div>
-         </div>
-        </div>
- 
-        <!-- Contact End -->
 
-        <!-- Footer Start -->
-         <footer>
-            <div class="social">
-                <a href="#"><i class="fa-brands fa-facebook"></i></a>
-                <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                <a href="#"><i class="fa-brands fa-twitter"></i></a>
+            <div class="menu-card bg-bg-card rounded-xl overflow-hidden border border-white/5 shadow-lg flex flex-col group hover:-translate-y-2 hover:border-primary hover:shadow-[0_10px_30px_rgba(243,156,18,0.2)] transition-all duration-500">
+                <div class="menu-img-container h-60 overflow-hidden bg-black">
+                    <img src="burger_spicy_chicken.png" alt="Spicy Chicken" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                </div>
+                <div class="menu-content p-6 flex flex-col flex-grow">
+                    <h3 class="text-2xl font-semibold mb-2 text-white">Spicy Chicken Smash</h3>
+                    <p class="text-sm text-gray-400 mb-6 flex-grow leading-relaxed">Crispy chicken thigh with spicy mayo, jalapeños, and slaw.</p>
+                    <div class="menu-footer flex justify-between items-center mt-auto">
+                        <span class="price text-xl font-bold text-primary">Rp 38.000</span>
+                        <a href="#" class="btn-add w-10 h-10 bg-primary text-bg rounded-full flex justify-center items-center hover:bg-white hover:rotate-90 transition duration-300" data-id="2" data-name="Spicy Chicken Smash" data-price="38000" data-img="burger_spicy_chicken.png"><i class="fa-solid fa-plus pointer-events-none"></i></a>
+                    </div>
+                </div>
             </div>
-            <div class="links">
-                <a href="#">Home</a>
-                <a href="menu">Menu</a>
-                <a href="#about">Tentang Kami</a>
-                <a href="#contact">Contact</a>
+
+            <div class="menu-card bg-bg-card rounded-xl overflow-hidden border border-white/5 shadow-lg flex flex-col group hover:-translate-y-2 hover:border-primary hover:shadow-[0_10px_30px_rgba(243,156,18,0.2)] transition-all duration-500">
+                <div class="menu-img-container h-60 overflow-hidden bg-black">
+                    <img src="burger_mushroom_swiss.png" alt="Mushroom Swiss" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                </div>
+                <div class="menu-content p-6 flex flex-col flex-grow">
+                    <h3 class="text-2xl font-semibold mb-2 text-white">Mushroom Swiss</h3>
+                    <p class="text-sm text-gray-400 mb-6 flex-grow leading-relaxed">Sautéed mushrooms, caramelized onions, and melted Swiss cheese.</p>
+                    <div class="menu-footer flex justify-between items-center mt-auto">
+                        <span class="price text-xl font-bold text-primary">Rp 55.000</span>
+                        <a href="#" class="btn-add w-10 h-10 bg-primary text-bg rounded-full flex justify-center items-center hover:bg-white hover:rotate-90 transition duration-300" data-id="3" data-name="Mushroom Swiss" data-price="55000" data-img="burger_mushroom_swiss.png"><i class="fa-solid fa-plus pointer-events-none"></i></a>
+                    </div>
+                </div>
             </div>
-            <div class="credit">
-                <p>Created by<a href="">adamaryanto</a>. | &copy; 2024.</p>
+
+            <div class="menu-card bg-bg-card rounded-xl overflow-hidden border border-white/5 shadow-lg flex flex-col group hover:-translate-y-2 hover:border-primary hover:shadow-[0_10px_30px_rgba(243,156,18,0.2)] transition-all duration-500">
+                <div class="menu-img-container h-60 overflow-hidden bg-black">
+                    <img src="burger_bbq_bacon.png" alt="BBQ Bacon" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                </div>
+                <div class="menu-content p-6 flex flex-col flex-grow">
+                    <h3 class="text-2xl font-semibold mb-2 text-white">BBQ Bacon Deluxe</h3>
+                    <p class="text-sm text-gray-400 mb-6 flex-grow leading-relaxed">Smoked bacon, onion rings, cheddar, and house BBQ sauce.</p>
+                    <div class="menu-footer flex justify-between items-center mt-auto">
+                        <span class="price text-xl font-bold text-primary">Rp 60.000</span>
+                        <a href="#" class="btn-add w-10 h-10 bg-primary text-bg rounded-full flex justify-center items-center hover:bg-white hover:rotate-90 transition duration-300" data-id="4" data-name="BBQ Bacon Deluxe" data-price="60000" data-img="burger_bbq_bacon.png"><i class="fa-solid fa-plus pointer-events-none"></i></a>
+                    </div>
+                </div>
             </div>
-         </footer>
-        <!-- Footer End -->
-        <!-- JavaScript -->
-     <script src="script.js"></script>
+
+            <div class="menu-card bg-bg-card rounded-xl overflow-hidden border border-white/5 shadow-lg flex flex-col group hover:-translate-y-2 hover:border-primary hover:shadow-[0_10px_30px_rgba(243,156,18,0.2)] transition-all duration-500">
+                <div class="menu-img-container h-60 overflow-hidden bg-black">
+                    <img src="burger_classic.png" alt="Double Cheese" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                </div>
+                <div class="menu-content p-6 flex flex-col flex-grow">
+                    <h3 class="text-2xl font-semibold mb-2 text-white">Double Cheese</h3>
+                    <p class="text-sm text-gray-400 mb-6 flex-grow leading-relaxed">X-Tra cheese, double beef patties, and cheesy sauce overload.</p>
+                    <div class="menu-footer flex justify-between items-center mt-auto">
+                        <span class="price text-xl font-bold text-primary">Rp 65.000</span>
+                        <a href="#" class="btn-add w-10 h-10 bg-primary text-bg rounded-full flex justify-center items-center hover:bg-white hover:rotate-90 transition duration-300" data-id="5" data-name="Double Cheese" data-price="65000" data-img="burger_classic.png"><i class="fa-solid fa-plus pointer-events-none"></i></a>
+                    </div>
+                </div>
+            </div>
+
+             <div class="menu-card bg-bg-card rounded-xl overflow-hidden border border-white/5 shadow-lg flex flex-col group hover:-translate-y-2 hover:border-primary hover:shadow-[0_10px_30px_rgba(243,156,18,0.2)] transition-all duration-500">
+                <div class="menu-img-container h-60 overflow-hidden bg-black">
+                    <img src="burger_mushroom_swiss.png" alt="Veggie" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                </div>
+                <div class="menu-content p-6 flex flex-col flex-grow">
+                    <h3 class="text-2xl font-semibold mb-2 text-white">Veggie Delight</h3>
+                    <p class="text-sm text-gray-400 mb-6 flex-grow leading-relaxed">Plant-based patty with avocado, sprouts, and vegan aioli.</p>
+                    <div class="menu-footer flex justify-between items-center mt-auto">
+                        <span class="price text-xl font-bold text-primary">Rp 40.000</span>
+                        <a href="#" class="btn-add w-10 h-10 bg-primary text-bg rounded-full flex justify-center items-center hover:bg-white hover:rotate-90 transition duration-300" data-id="6" data-name="Veggie Delight" data-price="40000" data-img="burger_mushroom_swiss.png"><i class="fa-solid fa-plus pointer-events-none"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-section py-24 px-[7%] bg-bg scroll-mt-20" id="about">
+        <h2 class="text-center text-4xl font-extrabold uppercase mb-12">Why Choose <span class="text-primary">Us</span></h2>
+        <div class="about-grid grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="about-card bg-bg-card p-10 rounded-xl text-center border border-white/5 shadow-lg group hover:bg-primary hover:-translate-y-2 transition duration-300">
+                <i class="fa-solid fa-bowl-rice text-5xl text-primary mb-6 transition duration-300 group-hover:text-bg"></i>
+                <h3 class="text-2xl font-semibold mb-4 group-hover:text-bg">Quality Ingredients</h3>
+                <p class="text-gray-400 text-sm leading-relaxed group-hover:text-black">We use only the freshest, locally sourced ingredients for our burgers.</p>
+            </div>
+            <div class="about-card bg-bg-card p-10 rounded-xl text-center border border-white/5 shadow-lg group hover:bg-primary hover:-translate-y-2 transition duration-300">
+                <i class="fa-solid fa-truck-fast text-5xl text-primary mb-6 transition duration-300 group-hover:text-bg"></i>
+                <h3 class="text-2xl font-semibold mb-4 group-hover:text-bg">Fast Delivery</h3>
+                <p class="text-gray-400 text-sm leading-relaxed group-hover:text-black">Hot and fresh burgers delivered straight to your doorstep in minutes.</p>
+            </div>
+            <div class="about-card bg-bg-card p-10 rounded-xl text-center border border-white/5 shadow-lg group hover:bg-primary hover:-translate-y-2 transition duration-300">
+                <i class="fa-regular fa-credit-card text-5xl text-primary mb-6 transition duration-300 group-hover:text-bg"></i>
+                <h3 class="text-2xl font-semibold mb-4 group-hover:text-bg">Easy Payment</h3>
+                <p class="text-gray-400 text-sm leading-relaxed group-hover:text-black">Multiple secure payment options for your convenience.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section py-24 px-[7%] bg-[#111] scroll-mt-20" id="contact">
+        <h2 class="text-center text-4xl font-extrabold uppercase mb-4">Contact <span class="text-primary">Us</span></h2>
+        <p class="text-center max-w-2xl mx-auto mb-12 font-light text-gray-400">Have questions or want to book a table? Get in touch with us.</p>
+
+        <div class="contact-container flex flex-wrap bg-bg-card rounded-xl overflow-hidden shadow-lg border border-white/5">
+            <div class="contact-map flex-[1_1_25rem] min-h-[400px]">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126881.56976860296!2d106.73539423314695!3d-6.38767139051209!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69e95620a297d3%3A0x1cfd4042316fb217!2sKota%20Depok%2C%20Jawa%20Barat!5e0!3m2!1sid!2sid!4v1721041875908!5m2!1sid!2sid" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="w-full h-full border-0 grayscale invert-[.9] contrast-[.8]"></iframe>
+            </div>
+
+            <form class="contact-form flex-[1_1_25rem] p-12">
+                <div class="input-group bg-bg mb-5 flex items-center p-4 border border-white/10 rounded-lg transition duration-300 focus-within:border-primary focus-within:shadow-[0_0_10px_rgba(243,156,18,0.2)]">
+                    <i class="fa-solid fa-user text-primary text-xl mr-4"></i>
+                    <input type="text" placeholder="Name" required class="bg-transparent text-white w-full text-base placeholder-gray-500 outline-none">
+                </div>
+                <div class="input-group bg-bg mb-5 flex items-center p-4 border border-white/10 rounded-lg transition duration-300 focus-within:border-primary focus-within:shadow-[0_0_10px_rgba(243,156,18,0.2)]">
+                    <i class="fa-solid fa-envelope text-primary text-xl mr-4"></i>
+                    <input type="email" placeholder="Email" required class="bg-transparent text-white w-full text-base placeholder-gray-500 outline-none">
+                </div>
+                <div class="input-group bg-bg mb-5 flex items-center p-4 border border-white/10 rounded-lg transition duration-300 focus-within:border-primary focus-within:shadow-[0_0_10px_rgba(243,156,18,0.2)]">
+                    <i class="fa-solid fa-phone text-primary text-xl mr-4"></i>
+                    <input type="tel" placeholder="Phone Number" required class="bg-transparent text-white w-full text-base placeholder-gray-500 outline-none">
+                </div>
+                <button type="submit" class="btn-send w-full bg-primary text-bg py-4 rounded-lg text-base font-bold mt-4 transition duration-300 hover:bg-primary-hover hover:tracking-wider shadow-lg">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="bg-bg text-center py-12 border-t border-[#333] mt-12">
+        <div class="socials py-4">
+            <a href="#" class="text-white text-2xl mx-4 transition duration-300 hover:text-primary hover:scale-125 inline-block"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#" class="text-white text-2xl mx-4 transition duration-300 hover:text-primary hover:scale-125 inline-block"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="text-white text-2xl mx-4 transition duration-300 hover:text-primary hover:scale-125 inline-block"><i class="fa-brands fa-twitter"></i></a>
+        </div>
+        <div class="footer-links my-6">
+            <a href="#home" class="text-gray-400 mx-4 font-medium transition duration-300 hover:text-primary">Home</a>
+            <a href="#menu" class="text-gray-400 mx-4 font-medium transition duration-300 hover:text-primary">Menu</a>
+            <a href="#about" class="text-gray-400 mx-4 font-medium transition duration-300 hover:text-primary">About</a>
+            <a href="#contact" class="text-gray-400 mx-4 font-medium transition duration-300 hover:text-primary">Contact</a>
+        </div>
+        <div class="credit">
+            <p class="text-sm text-gray-500">Created by <a href="" class="text-primary font-bold">adamaryanto</a> | © 2024.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Select DOM Elements
+        const navbarNav = document.querySelector('.navbar-nav.absolute');
+        const hamburgerMenu = document.querySelector('#hamburger-menu');
+        const searchForm = document.querySelector('.search-form');
+        const searchBox = document.querySelector('#search-box');
+        const searchBtn = document.querySelector('#search');
+        const shoppingCart = document.querySelector('.shopping-cart');
+        const cartBtn = document.querySelector('#cart-nav');
+        const cartCloseBtn = document.querySelector('#cart-close');
+
+        // --- Toggle Logic ---
+
+        // 1. Mobile Menu
+        hamburgerMenu.onclick = (e) => {
+            e.preventDefault();
+            navbarNav.classList.toggle('active');
+            searchForm.classList.remove('active');
+            shoppingCart.classList.remove('active');
+        };
+
+        // 2. Search Form
+        searchBtn.onclick = (e) => {
+            e.preventDefault();
+            searchForm.classList.toggle('active');
+            searchBox.focus(); // Auto focus ke input saat diklik
+            navbarNav.classList.remove('active');
+            shoppingCart.classList.remove('active');
+        };
+
+        // 3. Shopping Cart
+        cartBtn.onclick = (e) => {
+            e.preventDefault();
+            shoppingCart.classList.toggle('active');
+            navbarNav.classList.remove('active');
+            searchForm.classList.remove('active');
+        };
+
+        cartCloseBtn.onclick = () => {
+            shoppingCart.classList.remove('active');
+        };
+
+        // 4. Click Outside to Close All
+        document.addEventListener('click', function (e) {
+            if (!hamburgerMenu.contains(e.target) && !navbarNav.contains(e.target)) {
+                navbarNav.classList.remove('active');
+            }
+            if (!searchBtn.contains(e.target) && !searchForm.contains(e.target)) {
+                searchForm.classList.remove('active');
+            }
+            if (!cartBtn.contains(e.target) && !shoppingCart.contains(e.target)) {
+                shoppingCart.classList.remove('active');
+            }
+        });
+
+        // --- Search Functionality (Logic Pencarian Realtime) ---
+        searchBox.addEventListener('keyup', function (e) {
+            const term = e.target.value.toLowerCase();
+            const menuCards = document.querySelectorAll('.menu-card');
+
+            menuCards.forEach((card) => {
+                const title = card.querySelector('h3').innerText.toLowerCase();
+                // Jika judul cocok dengan ketikan, tampilkan. Jika tidak, sembunyikan.
+                if (title.indexOf(term) != -1) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+
+        // --- Shopping Cart Logic ---
+        let cart = [];
+        const cartItemsContainer = document.querySelector('.cart-items');
+        const cartTotalElement = document.querySelector('#cart-total');
+        const quantityBadge = document.querySelector('.quantity-badge');
+
+        const addButtons = document.querySelectorAll('.btn-add');
+        addButtons.forEach((btn) => {
+            btn.onclick = (e) => {
+                e.preventDefault();
+                const id = btn.getAttribute('data-id');
+                const name = btn.getAttribute('data-name');
+                const price = parseInt(btn.getAttribute('data-price'));
+                const img = btn.getAttribute('data-img');
+
+                addToCart(id, name, price, img);
+                openCart();
+            };
+        });
+
+        function addToCart(id, name, price, img) {
+            const existingItem = cart.find((item) => item.id === id);
+            if (existingItem) {
+                existingItem.quantity++;
+            } else {
+                cart.push({ id, name, price, img, quantity: 1 });
+            }
+            renderCart();
+        }
+
+        function removeFromCart(id) {
+            cart = cart.filter((item) => item.id !== id);
+            renderCart();
+        }
+
+        function renderCart() {
+            cartItemsContainer.innerHTML = '';
+            let totalPrice = 0;
+            let totalItems = 0;
+
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<p class="text-gray-500 text-center mt-10 empty-cart-msg text-sm">Your cart is empty.</p>';
+                quantityBadge.style.display = 'none';
+            } else {
+                cart.forEach((item) => {
+                    totalPrice += item.price * item.quantity;
+                    totalItems += item.quantity;
+
+                    const cartItem = document.createElement('div');
+                    cartItem.classList.add('flex', 'items-center', 'gap-4', 'relative', 'pb-4', 'border-b', 'border-white/5');
+                    cartItem.innerHTML = `
+                        <img src="${item.img}" alt="${item.name}" class="w-16 h-16 rounded-full object-cover">
+                        <div class="flex-1">
+                            <h4 class="text-sm font-bold text-white">${item.name}</h4>
+                            <div class="text-xs text-primary mt-1">${formatRupiah(item.price)} x ${item.quantity}</div>
+                        </div>
+                        <button class="remove-item text-gray-400 hover:text-red-500 transition" data-id="${item.id}">
+                            <i class="fa-solid fa-trash pointer-events-none"></i>
+                        </button>
+                    `;
+                    cartItemsContainer.appendChild(cartItem);
+                });
+
+                const removeButtons = document.querySelectorAll('.remove-item');
+                removeButtons.forEach((btn) => {
+                    btn.onclick = (e) => {
+                        removeFromCart(e.target.getAttribute('data-id'));
+                    };
+                });
+
+                quantityBadge.style.display = 'flex';
+                quantityBadge.innerText = totalItems;
+            }
+
+            cartTotalElement.innerText = formatRupiah(totalPrice);
+        }
+
+        function openCart() {
+            shoppingCart.classList.add('active');
+            searchForm.classList.remove('active');
+            navbarNav.classList.remove('active');
+        }
+
+        const formatRupiah = (number) => {
+            return new Intl.NumberFormat('id-ID', {
+                style: 'currency',
+                currency: 'IDR',
+                minimumFractionDigits: 0
+            }).format(number);
+        };
+    </script>
 </body>
+
 </html>
